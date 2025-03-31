@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}    
+    <div class="background">
+        <div class="container">       
+
+            <h1 class="titulo">Esta URL está protegida</h1>
+            <div class="alinhar">
+            <form method="post">
+                {% csrf_token %}
+                <label>Digite a senha:</label>
+                <input type="password" name="senha" required>
+                <button type="submit">Acessar</button>
+            </form>
+            <a href="{% url 'home' %}" class="botao_principal texto_botao">Voltar</a>
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>LGink | Porque menos é mais!</title>
+{% endblock titulo %}
+
+{% block conteudo %}
+    <div class="background">
+        <div class="container">
+            <h1 class="titulo">LGink</h1>
+            <form action="{% url 'valida_url' %}" method="POST" class="formulario"> 
+                {% csrf_token %}
+
+                <!-- Link a ser encurtado -->
+                <div class="divisao-form">
+                    <label class="texto_normal bold">Insira o Link que deve ser encurtado:</label>
+                    {{ form.url_redirecionado }}
+                </div>
+
+                <!-- Personalização do Link -->
+                <div class="divisao-form">
+                    <label class="texto_normal bold">Personalize o seu link:</label>
+                    <div class="form_lado_lado">
+                        <label class="texto_exemplo">https://LGink.com/<span id="preview_text">seu-link</span></label>
+                        {{ form.url_personalizado }}
+                    </div>
+                </div>
+
+                <!-- Botão para exibir opções avançadas -->
+                <button type="button" id="toggle_opcoes" class="botao_secundario">Opções Avançadas</button>
+
+                <!-- Opções avançadas (inicialmente ocultas) -->
+                <div id="opcoes_avancadas" style="display: none;">
+                    <div class="divisao-form">
+                        <label class="texto_normal bold">Escolha as opções extras:</label>
+                        <div class="checkbox-container">
+                            <label>
+                                <input type="checkbox" id="checkbox_qrcode" name="gerar_qrcode"> Gerar QR Code
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_senha" name="ativar_senha"> Proteger com senha
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_expiracao" name="ativar_expiracao"> Definir expiração
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campo para senha -->
+                    <div id="campo_senha" class="divisao-form" style="display: none;">
+                        <label class="texto_normal bold">Digite a senha:</label>
+                        {{ form.senha }}
+                    </div>
+
+                    <!-- Campo para data de expiração -->
+                    <div id="campo_expiracao" class="divisao-form" style="display: none;">
+                        <label class="texto_normal bold">Data de expiração:</label>
+                        {{ form.data_expiracao }}
+                    </div>
+                </div>
+
+                <!-- Botão principal -->
+                <button type="submit" class="botao_principal texto_botao">Encurtar Link!</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script para exibir campos -->
+    <script>
+        document.getElementById("toggle_opcoes").addEventListener("click", function () {
+            let opcoes = document.getElementById("opcoes_avancadas");
+            opcoes.style.display = opcoes.style.display === "none" ? "block" : "none";
+        });
+
+        document.getElementById("checkbox_senha").addEventListener("change", function () {
+            document.getElementById("campo_senha").style.display = this.checked ? "block" : "none";
+        });
+
+        document.getElementById("checkbox_expiracao").addEventListener("change", function () {
+            document.getElementById("campo_expiracao").style.display = this.checked ? "block" : "none";
+        });
+
+        // Atualizar preview do link personalizado
+        document.querySelector("input[name='url_personalizado']").addEventListener("input", function() {
+            let previewText = document.getElementById("preview_text");
+            previewText.textContent = this.value || "seu-link";
+        });
+    </script>    
+
+{% endblock conteudo %}

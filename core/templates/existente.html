@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>LGink | Esse link já existe</title>
+{% endblock titulo %}
+
+{% block conteudo %}
+    <div class="background">
+
+        <div class="container">
+            
+            <h1 class="titulo">Link já existe</h1>
+            <div class="alinhar">
+                <div class="divisao-form-copiar">
+                    <a href="{{ url_existente }}" target="_blank"
+                       class="texto_normal caixa_link">{{ abrir_url }}</a>
+                    <button onclick="copiarTexto()" class="fa-solid fa-copy texto_botao botao_acao">
+                        <span class="texto_copiar">Copiar</span></button>
+                </div>
+
+                <a href="{% url 'home' %} " class="botao_principal texto_botao">Criar outro link</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        function copiarTexto() {
+            const copyText = document.querySelector(".caixa_link");
+            const buttoao = document.querySelector(".botao_acao");
+            navigator.clipboard.writeText(copyText.innerText);
+            buttoao.className = 'fa-solid fa-check texto_botao botao_acao_ok'
+
+        }
+    </script>
+{% endblock conteudo %}

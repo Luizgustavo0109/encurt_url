@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>LGink | Senha incorreta</title>
+{% endblock titulo %}
+
+{% block conteudo %}
+    <div class="background">
+        <div class="container">       
+            <h1 class="titulo">Senha incorreta</h1>
+            <p>A senha informada está errada. <a href="{{ url }}">Tentar novamente</a></p>
+            <div class="alinhar">
+                <a href="{% url 'home' %}" class="botao_principal texto_botao">Voltar</a>
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}

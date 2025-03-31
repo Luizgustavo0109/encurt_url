@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Config locais
+__pycache__/
+db.sqlite3  # Caso use SQLite
+*.pyc
+*.log
+
+# Arquivos de configuração locais
+.DS_Store
+.idea/
+.vscode/
+
+# Credenciais sensíveis
+*.pem
+*.key

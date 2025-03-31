@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>LGink | Link criado!</title>
+{% endblock titulo %}
+
+{% block conteudo %}
+    <div class="background">
+        <div class="container">
+            
+            <h1 class="titulo">Sucesso!</h1>
+            <div class="alinhar">
+                <div class="divisao-form-sucesso">
+                    <p class="texto_normal bold">Seu link é:</p>
+                    <a href="{{ abrir_url }}" id="texto" target="_blank"
+                       class="texto_normal caixa_link">{{ new_url }}</a>
+                    <button onclick="copiarTexto()" class="fa-solid fa-copy texto_botao botao_acao">
+                        <span class="texto_copiar">Copiar</span>
+                    </button>
+
+                    <script>
+                        function copiarTexto() {
+                            const copyText = document.getElementById("texto");
+                            const botao = document.querySelector(".botao_acao");
+                            navigator.clipboard.writeText(copyText.innerText);
+                            botao.className = 'fa-solid fa-check texto_botao botao_acao_ok';
+                        }
+                    </script>
+                </div>
+
+                {% if qr_code %}
+                    <div class="qr-container">
+                        <p class="texto_normal bold">QR Code para o link:</p>
+                        <img src="{{ qr_code }}" alt="QR Code do link encurtado" class="qr-code">
+                    </div>
+                {% endif %}
+
+                <a href="{% url 'home' %}" class="botao_principal texto_botao">Criar outro link</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .qr-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+{% endblock conteudo %}

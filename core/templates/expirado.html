@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>LGink | Link expirado</title>
+{% endblock titulo %}
+
+{% block conteudo %}
+    <div class="background">
+        <div class="container">
+            <h1 class="titulo">Link expirado</h1>
+            <p>A data de expiração foi atingida e a URL não pode mais ser acessada.</p>
+            <div class="alinhar">
+                <a href="{% url 'home' %}" class="botao_principal texto_botao">Criar outro link</a>
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}
