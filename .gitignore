@@ -12,7 +12,7 @@ media/
 
 # Config locais
 __pycache__/
-db.sqlite3  # Caso use SQLite
+db.sqlite3  
 *.pyc
 *.log
 
