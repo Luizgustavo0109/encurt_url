@@ -15,7 +15,7 @@ def valida_url(request):
     host = request.META.get('HTTP_HOST')
 
     if not form.is_valid():
-        return render(request, 'erro.html', {'erro': 'Dados inválidos no formulário'})
+        return render(request, '404.html', {'erro': 'Dados inválidos no formulário'})
 
     url_personalizado = form.cleaned_data.get("url_personalizado", "").strip()
 
